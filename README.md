@@ -1,21 +1,27 @@
 # aws_lambda
 A series of useful lambda functions in python
 
-### poweroff_instances ###
-This is an example AWS Lambda script that will shut down any
-insntances that either do NOT have the `tag:shutdown`, or with
-the `tag:shutdown != false`.
+### change_ec2_state ###
+This is an example AWS lambda function that can either shutdown
+or startup instances in any region given a particular tag name / value
+pair. For example, to power off all instances with the following tag:
 
-This is meant to be an aggressive script to shutdown instances,
-making you explicitly flag an instance to remain powered on.
+tag:shutdown = true
 
-NOTE: If you tag an instance with `tag:shutdown = falsee`,
-the instance will still be turned off. Check your tags!
+Add this lambda function along with the following configuration:
+
+```
+STATE = 'stop'
+STATE_MAP = {'stop' : {'tag': 'shutdown', 'value': 'true'}}```
+
+This function can then be added as a scheduled event and executed
+on a [schedule](http://docs.aws.amazon.com/lambda/latest/dg/getting-started-scheduled-events.html) of your choosing.
 
 In order for this function to work, create a policy similar to
 the following, attach it to a role, and associate that role
 to this lambda function:
-`{
+```
+{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -43,7 +49,7 @@ to this lambda function:
             ]
         }
     ]
-}`
+}```
 
 Additionally, this function may take some time to run, so be sure to
 set a timeout appropriately.
