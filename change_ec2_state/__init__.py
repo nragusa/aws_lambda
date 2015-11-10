@@ -4,12 +4,12 @@ with a specified tag. For example, to start instances
 with the tag:startup = true, set the following:
 
     STATE = 'start'
-    STATE_MAP = {'start': {'tag': 'startup', 'value': 'true'}}
+    STATE_MAP = {STATE: {'tag': 'startup', 'value': 'true'}}
 
 To shutdown instances with tag:shutdown = true:
 
     STATE = 'stop'
-    STATE_MAP = {'stop' : {'tag': 'shutdown', 'value': 'true'}}
+    STATE_MAP = {STATE: {'tag': 'shutdown', 'value': 'true'}}
 """
 from boto3 import resource, client
 from botocore.exceptions import ClientError
@@ -22,7 +22,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 STATE = 'start'
-STATE_MAP = {'start' : {'tag': 'startup', 'value': 'true'}}
+STATE_MAP = {STATE: {'tag': 'startup', 'value': 'true'}}
 
 ########
 
