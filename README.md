@@ -12,7 +12,8 @@ Add this lambda function along with the following configuration:
 
 ```
 STATE = 'stop'
-STATE_MAP = {'stop' : {'tag': 'shutdown', 'value': 'true'}}```
+STATE_MAP = {'stop' : {'tag': 'shutdown', 'value': 'true'}}
+```
 
 This function can then be added as a scheduled event and executed
 on a [schedule](http://docs.aws.amazon.com/lambda/latest/dg/getting-started-scheduled-events.html) of your choosing.
@@ -49,7 +50,8 @@ to this lambda function:
             ]
         }
     ]
-}```
+}
+```
 
 Additionally, this function may take some time to run, so be sure to
 set a timeout appropriately.
