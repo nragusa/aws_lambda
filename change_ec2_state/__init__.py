@@ -46,12 +46,11 @@ def lambda_handler(event, context):
     all_instances = {}
     regions = _getRegions()
     for region in regions:
-        if 'RegionName' not in region:
-            raise Exception('Unknown region returned')
-        ec2 = resource('ec2', region_name=region['RegionName'])
+        region_name = region.get('RegionName', '')
+        ec2 = resource('ec2', region_name=region_name)
 
         """Retrieve instances in this region """
-        logger.info('Retrieving instances from %s' % region['RegionName'])
+        logger.info('Retrieving instances from %s' % region_name)
         if STATE == 'stop':
             instance_filter = ['running']
         elif STATE == 'start':
