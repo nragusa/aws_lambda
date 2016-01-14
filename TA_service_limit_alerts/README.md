@@ -81,3 +81,22 @@ of your console click *Add event source* and specify the following:
 This will set a schedule to execute your function every 4 hours. See the
 [lambda scheduled event documentation](http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)
 for more details.
+
+### SNS Notification ###
+If you subscribe via email to the SNS topic you created, the function will format
+the service limits in an easy-to-read format for quick digesting of the information:
+```
+The following service limits have reached 80% or greater:
+
+Service: VPC
+Limit Name: VPCs
+Limit Amount: 5
+Current Usage: 4
+Region: us-west-2
+
+Service: VPC
+Limit Name: Internet gateways
+Limit Amount: 5
+Current Usage: 4
+Region: us-west-2
+```
