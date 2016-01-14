@@ -69,3 +69,15 @@ specify the appropriate **S3 bucket** and **SNS topic**:
     ]
 }
 ```
+
+### Lambda Schedule ###
+To execute this function on a regular basis, in the **Event Sources** tab
+of your console click *Add event source* and specify the following:
+* Event source type: Scheduled Event
+* Name: a-useful-name
+* Description: Runs every X hours
+* Schedule expression: rate(4 hours)
+
+This will set a schedule to execute your function every 4 hours. See the
+[lambda scheduled event documentation](http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)
+for more details.
